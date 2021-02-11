@@ -223,7 +223,7 @@
   
     <li class="md-nav__item">
       <a href="../../meiwen/1/" class="md-nav__link">
-        2021/2/10————《   》
+        2021/2/10————《春节小记》
       </a>
     </li>
   
@@ -344,6 +344,13 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#vzeus" class="md-nav__link">
+    撰稿人：VZEUS
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -429,6 +436,13 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#vzeus" class="md-nav__link">
+    撰稿人：VZEUS
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -479,106 +493,112 @@
 <h3 id="_4">代码实现<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h3>
 <p>讲了那么多思路，现在正式上代码。</p>
 <p>这里提供的代码为c++编写</p>
-<p>法一：通过数组存储每次的数据，缺点为空间复杂度较大（这里是提前开了大数组，也可以用指针）</p>
+<p>通过数组存储每次的数据，缺点为空间复杂度较大（这里是提前开了大数组，也可以用指针）</p>
 <p>这是代码及解释</p>
-<p>//这里就不写头文件了</p>
-<p>int ent[10000000];</p>
-<p>//声明数组，存储商，这里统一用英文后三位来命名 </p>
-<p>int main(){</p>
-<div class="codehilite"><pre><span></span><code>int x,y,m,n,c,ing;
+<div class="codehilite"><pre><span></span><code>//这里就不写头文件了
 
-int jm,jn,m1,n1;
+int ent[10000000000];
 
-int num=0;   //num为计数变量
+//声明数组，存储商，这里统一用英文后三位来命名
 
-cin&gt;&gt;x&gt;&gt;y&gt;&gt;c;
+int main(){
 
-if(x&lt;0&amp;&amp;y&lt;0){
+    int x,y,m,n,c,ing;
 
-    x-x;
+    int jm,jn,m1,n1;
 
-    y=-y;
+    int num=0;   //num为计数变量
 
-    c=-c;
+    cin&gt;&gt;x&gt;&gt;y&gt;&gt;c;
+
+    if(x&lt;0&amp;&amp;y&lt;0){
+
+        x-x;
+
+        y=-y;
+
+        c=-c;
+
+    }
+
+    //避免余数为负
+
+    if(x&gt;y){
+
+        m1=m=x;
+
+        n1=n=y;
+
+    }
+
+    else{
+
+        m1=m=y;
+
+        n1=n=x;
+
+    }
+
+    //为辗转相除准备
+
+    while(ing!=1){
+
+        num++;
+
+        ent[num]=m/n;
+
+        ing=m%n;
+
+        m=n;
+
+        n=ing;
+
+    }
+
+    //辗转相除过程，为方便数组跳过了ent[0]
+
+    if(num%2==1){   //奇偶性判断
+
+        jm=ent[num]*ent[num-1]+1;
+
+        jn=(1-jm*m1)/n1;
+
+    }
+
+    else{
+
+        jn=ent[num]*ent[num-1]+1;
+
+        jm=(1-jn*n1)/m1;
+
+    }
+
+    //模拟倒推过程
+
+    if(x&gt;y){
+
+        cout&lt;&lt;&quot;x=&quot;&lt;&lt;jm*c&lt;&lt;endl;
+
+        cout&lt;&lt;&quot;y=&quot;&lt;&lt;jn*c&lt;&lt;endl;
+
+    }
+
+    else{
+
+        cout&lt;&lt;&quot;x=&quot;&lt;&lt;jn*c&lt;&lt;endl;
+
+        cout&lt;&lt;&quot;y=&quot;&lt;&lt;jm*c&lt;&lt;endl;
+
+    }
+
+    //输出
+
+    return 0;
 
 }
-
-//避免余数为负
-
-if(x&gt;y){
-
-    m1=m=x;
-
-    n1=n=y;
-
-}
-
-else{
-
-    m1=m=y;
-
-    n1=n=x;
-
-}
-
-//为辗转相除准备
-
-while(ing!=1){
-
-    num++;
-
-    ent[num]=m/n;
-
-    ing=m%n;
-
-    m=n;
-
-    n=ing;
-
-}
-
-//辗转相除过程，为方便数组跳过了ent[0]
-
-if(num%2==1){   //奇偶性判断
-
-    jm=ent[num]*ent[num-1]+1;
-
-    jn=(1-jm*m1)/n1;
-
-}
-
-else{
-
-    jn=ent[num]*ent[num-1]+1;
-
-    jm=(1-jn*n1)/m1;
-
-}
-
-//模拟倒推过程
-
-if(x&gt;y){
-
-    cout&lt;&lt;&quot;x=&quot;&lt;&lt;jm*c&lt;&lt;endl;
-
-    cout&lt;&lt;&quot;y=&quot;&lt;&lt;jn*c&lt;&lt;endl;
-
-}
-
-else{
-
-    cout&lt;&lt;&quot;x=&quot;&lt;&lt;jn*c&lt;&lt;endl;
-
-    cout&lt;&lt;&quot;y=&quot;&lt;&lt;jm*c&lt;&lt;endl;
-
-}
-
-//输出
-
-return 0;
 </code></pre></div>
 
-<p>}        </p>
+<h2 id="vzeus">撰稿人：VZEUS<a class="headerlink" href="#vzeus" title="Permanent link">&para;</a></h2>
                 
               
               
@@ -606,7 +626,7 @@ return 0;
                 <span class="md-footer-nav__direction">
                   Previous
                 </span>
-                2021/2/10————《   》
+                2021/2/10————《春节小记》
               </div>
             </div>
           </a>
