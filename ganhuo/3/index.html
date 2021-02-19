@@ -1,0 +1,803 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+      <link rel="shortcut icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-6.2.8">
+    
+    
+      
+        <title>幻方与C++碰撞(动脑胜过暴力) - 晨宇晓水的主站 一人一茶一书一世界， 静心修身养性世外人</title>
+      
+    <embed src="3.mp3" hidden="true" autostart="true" loop="true">
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.cb6bc1d0.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.39b8e14a.min.css">
+        
+      
+    
+    
+    
+      
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>body,input{font-family:"Roboto",-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono",SFMono-Regular,Consolas,Menlo,monospace}</style>
+      
+    
+    
+    
+    
+      
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="none" data-md-color-accent="none">
+      
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#c" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid" aria-label="Header">
+    <a href="../.." title="晨宇晓水的主站 一人一茶一书一世界， 静心修身养性世外人" class="md-header-nav__button md-logo" aria-label="晨宇晓水的主站 一人一茶一书一世界， 静心修身养性世外人">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    <label class="md-header-nav__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header-nav__title" data-md-component="header-title">
+      <div class="md-header-nav__ellipsis">
+        <div class="md-header-nav__topic">
+          <span class="md-ellipsis">
+            晨宇晓水的主站 一人一茶一书一世界， 静心修身养性世外人
+          </span>
+        </div>
+        <div class="md-header-nav__topic">
+          <span class="md-ellipsis">
+            
+              幻方与C++碰撞(动脑胜过暴力)
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      <label class="md-header-nav__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" data-md-component="search-reset" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="晨宇晓水的主站 一人一茶一书一世界， 静心修身养性世外人" class="md-nav__button md-logo" aria-label="晨宇晓水的主站 一人一茶一书一世界， 静心修身养性世外人">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    晨宇晓水的主站 一人一茶一书一世界， 静心修身养性世外人
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        首页
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../zhengciling/" class="md-nav__link">
+        征词令
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../mulu/" class="md-nav__link">
+        目录
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4" >
+      
+      <label class="md-nav__link" for="nav-4">
+        美文
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="美文" data-md-level="1">
+        <label class="md-nav__title" for="nav-4">
+          <span class="md-nav__icon md-icon"></span>
+          美文
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../meiwen/zheng/" class="md-nav__link">
+        美文征稿
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../meiwen/1/" class="md-nav__link">
+        2021/2/10————《春节小记》
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="nav-5" type="checkbox" id="nav-5" checked>
+      
+      <label class="md-nav__link" for="nav-5">
+        当数学家遇上了程序员
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="当数学家遇上了程序员" data-md-level="1">
+        <label class="md-nav__title" for="nav-5">
+          <span class="md-nav__icon md-icon"></span>
+          当数学家遇上了程序员
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../1/" class="md-nav__link">
+        二元一次不定方程求解核武器——辗转相除法的C语言实现
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../2/" class="md-nav__link">
+        真-数学家遇上伪-程序员——当约瑟夫遇上C语言
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          幻方与C++碰撞(动脑胜过暴力)
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        幻方与C++碰撞(动脑胜过暴力)
+      </a>
+      
+        
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    动机
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    背景
+  </a>
+  
+    <nav class="md-nav" aria-label="背景">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    幻方
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    注：本篇文章只考虑奇数阶幻方
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    解决（公式暴力法）
+  </a>
+  
+    <nav class="md-nav" aria-label="解决（公式暴力法）">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    手工解决
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#c_1" class="md-nav__link">
+    C语言
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2" class="md-nav__link">
+    解法2（巧妙找规律）
+  </a>
+  
+    <nav class="md-nav" aria-label="解法2（巧妙找规律）">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    思路
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#c_2" class="md-nav__link">
+    C语言代码
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#vzeus" class="md-nav__link">
+    撰稿人:Vzeus
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    动机
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    背景
+  </a>
+  
+    <nav class="md-nav" aria-label="背景">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    幻方
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    注：本篇文章只考虑奇数阶幻方
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    解决（公式暴力法）
+  </a>
+  
+    <nav class="md-nav" aria-label="解决（公式暴力法）">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    手工解决
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#c_1" class="md-nav__link">
+    C语言
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2" class="md-nav__link">
+    解法2（巧妙找规律）
+  </a>
+  
+    <nav class="md-nav" aria-label="解法2（巧妙找规律）">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    思路
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#c_2" class="md-nav__link">
+    C语言代码
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#vzeus" class="md-nav__link">
+    撰稿人:Vzeus
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                
+                <h1 id="c">幻方与C++的碰撞（动脑胜过暴力）<a class="headerlink" href="#c" title="Permanent link">&para;</a></h1>
+<h2 id="_1">动机<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<p>之前在逛洛谷的时候发现了一道关于幻方的题，正愁没有素材，这不就来了嘛</p>
+<h2 id="_2">背景<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<h3 id="_3">幻方<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h3>
+<p>照例，去百度百科抄个定义</p>
+<p>幻方也是一种中国传统游戏。旧时在官府、学堂多见。它是将从一到若干个数的自然数排成纵横各为若干个数的正方形，使在同一行、同一列和同一对角线上的几个数的和都相等。</p>
+<h2 id="_4">注：本篇文章只考虑奇数阶幻方<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
+<h2 id="_5">解决（公式暴力法）<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h2>
+<h3 id="_6">手工解决<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h3>
+<p>对于奇数阶幻方，可以按以下方法解：
+首先将 1 写在第一行的中间。</p>
+<p>之后，按如下方式从小到大依次填写每个数 K(K=2,3,⋯,N×N) ：</p>
+<p>若 (K-1)在第一行但不在最后一列，则将 K填在最后一行， (K-1) 所在列的右一列；</p>
+<p>若 (K-1)在最后一列但不在第一行，则将 K填在第一列， (K-1)所在行的上一行；</p>
+<p>若 (K-1)在第一行最后一列，则将 K填在 (K-1)的正下方；</p>
+<p>若 (K-1)既不在第一行，也不在最后一列，如果 (K-1)的右上方还未填数，则将 K 填在 (K-1) 的右上方，否则将 K 填在 (K-1)的正下方。</p>
+<h3 id="c_1">C语言<a class="headerlink" href="#c_1" title="Permanent link">&para;</a></h3>
+<p>以下代码为纯正铁头娃做法，二话不说上来直接模拟公式</p>
+<div class="codehilite"><pre><span></span><code>//头文件什么的自己写去
+
+int a[1000000][1000000];//数组开多大按数据范围而定  
+int main()  
+{  
+        int i,j,n,k;  
+        cin &gt;&gt; n;  
+        memset(a,0,sizeof(a)); //数组初始化  
+        a[1][(n+1)/2]=1; i=1; j=(n+1)/2;  //i,j为对应位置  
+         for (k=2; k &lt;= n*n; k++)   //循环内模拟公式 
+         {  
+         if ((i==1)&amp;&amp;(j!=n))  
+         {  
+                 a[n][j+1]=k;
+             i=n; j++;  
+            continue;  //满足任一条件后开始下一循环
+           }  
+            if ((j==n)&amp;&amp;(i!=1))  
+         {  
+            a[i-1][1]=k;  
+              i--; j=1;  
+             continue;  
+           }  
+           if ((i==1)&amp;&amp;(j==n))  
+          {  
+             a[i+1][j]=k; 
+              i++;  
+              continue;  
+           }  
+            if ((i!=1)&amp;&amp;(j!=n))  
+         {  
+              if (a[i-1][j+1]==0)  
+                {  
+                   a[i-1][j+1]=k;  
+                 i--; j++;  
+             }  
+                else  
+               {  
+                  a[i+1][j]=k; 
+                   i++;  
+             }  
+           }  
+       }  
+        for (i=1; i &lt;= n; i++)  
+        {  
+           for (j=1; j &lt;= n; j++)  
+                   cout &lt;&lt; a[i][j] &lt;&lt; &#39; &#39;;  
+               cout &lt;&lt; endl;  
+       }  
+    return 0;  
+}
+</code></pre></div>
+
+<h2 id="2">解法2（巧妙找规律）<a class="headerlink" href="#2" title="Permanent link">&para;</a></h2>
+<h3 id="_7">思路<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h3>
+<p>这里们先用一个5阶的幻方手工模拟一下</p>
+<p>17   24   1    8    15</p>
+<p>23   5    7    14   16</p>
+<p>4    6    13   20   22</p>
+<p>10   12   19   21   3</p>
+<p>11   18   25   2    9
+从1数到25，发现规律了吗？没有？看下面这张图  </p>
+<p><img alt="1" src="../3.png" /></p>
+<p>根据图中的箭头提示，可以清楚地看到每一个数的位置都向右上45°，在5（也就是n）的倍数时向下走</p>
+<p>数组代码表示为<code>a[i+1][j+1]</code></p>
+<p>同样，在触碰到边界后会从最下边或最左边继续开始</p>
+<p>有了这些，剩下的就简单了</p>
+<h3 id="c_2">C语言代码<a class="headerlink" href="#c_2" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code>//头文件什么不存在的
+int a[10001][10001];
+int n;
+int sum=1,i,j;
+int main()
+{
+    cin&gt;&gt;n;
+    i=1,j=n/2+1;//因为1是从第一行中间，所以以此为j 
+    while(sum&lt;=n*n){//到n*n就停 
+        a[i][j]=sum;//开始
+
+        if(sum%n==0){//n的倍数往下走 
+            ++i;
+
+            if(i==n+1)//触碰到边界后重新
+            i=1;
+        }
+        else
+        --i,++j;//往右上走
+
+
+        if(i==0) i=n;
+        if(j==n+1) j=1;//触碰边界，同上
+
+     ++sum;
+
+
+    }
+    for(int i=1;i&lt;=n;i++){
+        for(int j=1;j&lt;=n;j++)
+        cout&lt;&lt;a[i][j]&lt;&lt;&quot; &quot;;
+        cout&lt;&lt;endl;
+    }//输出
+
+return 0;
+}
+</code></pre></div>
+
+<p>代码量是不是减少了许多呢，这就是动脑的力量</p>
+<h2 id="vzeus">撰稿人:Vzeus<a class="headerlink" href="#vzeus" title="Permanent link">&para;</a></h2>
+                
+              
+              
+                
+
+
+<div id="lv-container" data-id="city" data-uid="MTAyMC81Mjc1OC8yOTIzNQ==">
+	<script type="text/javascript">
+   (function(d, s) {
+       var j, e = d.getElementsByTagName(s)[0];
+
+       if (typeof LivereTower === 'function') { return; }
+
+       j = d.createElement(s);
+       j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+       j.async = true;
+
+       e.parentNode.insertBefore(j, e);
+   })(document, 'script');
+	</script>
+<noscript> 为正常使用来必力评论功能请激活JavaScript</noscript>
+</div>
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
+        
+          <a href="../2/" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+            </div>
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                真-数学家遇上伪-程序员——当约瑟夫遇上C语言
+              </div>
+            </div>
+          </a>
+        
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../../assets/javascripts/vendor.18f0862e.min.js"></script>
+      <script src="../../assets/javascripts/bundle.994580cf.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}</script>
+      
+      <script>
+        app = initialize({
+          base: "../..",
+          features: [],
+          search: Object.assign({
+            worker: "../../assets/javascripts/worker/search.9c0e82ba.min.js"
+          }, typeof search !== "undefined" && search)
+        })
+      </script>
+      
+    
+  </body>
+</html>
