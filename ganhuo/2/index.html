@@ -1,6 +1,6 @@
 
 <!doctype html>
-<html lang="en" class="no-js">
+<html lang="zh" class="no-js">
   <head>
     
       <meta charset="utf-8">
@@ -16,12 +16,16 @@
       
         <title>真-数学家遇上伪-程序员——当约瑟夫遇上C语言 - 晨宇晓水的主站 一人一茶一书一世界， 静心修身养性世外人</title>
       
-    <embed src="2.mp3" hidden="true" autostart="true" loop="true">   
+    
     
       <link rel="stylesheet" href="../../assets/stylesheets/main.cb6bc1d0.min.css">
       
         
         <link rel="stylesheet" href="../../assets/stylesheets/palette.39b8e14a.min.css">
+        
+          
+          
+          <meta name="theme-color" content="#4051b5">
         
       
     
@@ -48,7 +52,7 @@
     
     
     
-    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="none" data-md-color-accent="none">
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="indigo" data-md-color-accent="indigo">
       
   
     
@@ -59,7 +63,7 @@
       
         
         <a href="#-c" class="md-skip">
-          Skip to content
+          跳转至
         </a>
       
     </div>
@@ -105,7 +109,7 @@
   <label class="md-search__overlay" for="__search"></label>
   <div class="md-search__inner" role="search">
     <form class="md-search__form" name="search">
-      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active" required>
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active" required>
       <label class="md-search__icon md-icon" for="__search">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
@@ -118,7 +122,7 @@
       <div class="md-search__scrollwrap" data-md-scrollfix>
         <div class="md-search-result" data-md-component="search-result">
           <div class="md-search-result__meta">
-            Initializing search
+            正在初始化搜索引擎
           </div>
           <ol class="md-search-result__list"></ol>
         </div>
@@ -336,7 +340,7 @@
       </a>
       
         
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+<nav class="md-nav md-nav--secondary" aria-label="目录">
   
   
     
@@ -344,7 +348,7 @@
   
     <label class="md-nav__title" for="__toc">
       <span class="md-nav__icon md-icon"></span>
-      Table of contents
+      目录
     </label>
     <ul class="md-nav__list" data-md-scrollfix>
       
@@ -449,6 +453,18 @@
   
 
           
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../4/" class="md-nav__link">
+        杨辉三角————万物的钥匙
+      </a>
+    </li>
+  
+
+          
         </ul>
       </nav>
     </li>
@@ -467,7 +483,7 @@
                 <div class="md-sidebar__scrollwrap">
                   <div class="md-sidebar__inner">
                     
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+<nav class="md-nav md-nav--secondary" aria-label="目录">
   
   
     
@@ -475,7 +491,7 @@
   
     <label class="md-nav__title" for="__toc">
       <span class="md-nav__icon md-icon"></span>
-      Table of contents
+      目录
     </label>
     <ul class="md-nav__list" data-md-scrollfix>
       
@@ -574,6 +590,9 @@
                 
                 
                 <h1 id="-c">真-数学家遇上伪-程序员——当约瑟夫遇上C语言<a class="headerlink" href="#-c" title="Permanent link">&para;</a></h1>
+<p><audio id="audio" preload="none" autoplay loop>
+      <source id="mp3" src="../2.mp3">
+</audio></p>
 <h2 id="_1">背景故事<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
 <h3 id="_2">动机<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h3>
 <p>之前偶然发现数学家中一个很有名的故事，约瑟夫环。现在萌生了用程序语言实现的想法</p>
@@ -588,11 +607,11 @@
 <p>以下列举了M较小的情况下的解法</p>
 <p>设M=2</p>
 <p>即N个人围成一圈，1，2，1，2的报数，报到2就去死，直到只剩下一个人为止。</p>
-<p>当N=2^k的时候，第一个报数的人就是最后一个死的，
-对于任意的自然数N 都可以表示为N=2^k+t，其中t&lt;n/2</p>
-<p>于是当有t个人去死的时候，就只剩下2^k个人 ，这2<sup>k个人中第一个报数的就是最后去死的。这2</sup>k个人中第一个报数的人就是2t+1</p>
+<p>当N=2<sup>k</sup>的时候，第一个报数的人就是最后一个死的，
+对于任意的自然数N 都可以表示为N=2<sup>k</sup>+t，其中t&lt;n/2</p>
+<p>于是当有t个人去死的时候，就只剩下2<sup>k</sup>个人 ，这2<sup>k</sup>个人中第一个报数的就是最后去死的。这2<sup>k</sup>个人中第一个报数的人就是2t+1</p>
 <p>于是就求出了当M=2时约瑟夫问题的解：</p>
-<p>求出不大于N的最大的2的整数次幂，记为2<sup>k，最后一个去死的人是2(N-2</sup>k)+1</p>
+<p>求出不大于N的最大的2的整数次幂，记为2<sup>k，最后一个去死的人是2(N-2</sup>k^)+1</p>
 <p>设M=3
 即N个人围成一圈，1，2，3，1，2，3的报数，报到3就去死，直到只剩下一个人为止。</p>
 <p>以N=2009为例计算
@@ -748,7 +767,7 @@ int main(){
             <div class="md-footer-nav__title">
               <div class="md-ellipsis">
                 <span class="md-footer-nav__direction">
-                  Previous
+                  上一页
                 </span>
                 二元一次不定方程求解核武器——辗转相除法的C语言实现
               </div>
@@ -760,7 +779,7 @@ int main(){
             <div class="md-footer-nav__title">
               <div class="md-ellipsis">
                 <span class="md-footer-nav__direction">
-                  Next
+                  下一页
                 </span>
                 幻方与C++碰撞(动脑胜过暴力)
               </div>
@@ -777,11 +796,7 @@ int main(){
     <div class="md-footer-meta__inner md-grid">
       <div class="md-footer-copyright">
         
-        Made with
-        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
-          Material for MkDocs
-        </a>
-      </div>
+      欢迎</div>
       
     </div>
   </div>
@@ -790,7 +805,7 @@ int main(){
     </div>
     
       <script src="../../assets/javascripts/vendor.18f0862e.min.js"></script>
-      <script src="../../assets/javascripts/bundle.994580cf.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}</script>
+      <script src="../../assets/javascripts/bundle.994580cf.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "\u590d\u5236", "clipboard.copied": "\u5df2\u590d\u5236", "search.config.lang": "ja", "search.config.pipeline": "trimmer, stemmer", "search.config.separator": "[\\uff0c\\u3002]+", "search.placeholder": "\u641c\u7d22", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}</script>
       
       <script>
         app = initialize({
